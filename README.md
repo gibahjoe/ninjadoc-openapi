@@ -27,8 +27,8 @@ This is a community-based project, not maintained by the Ninja Framework Contrib
 
 ```xml
    <dependency>
-      <groupId>com.devappliance</groupId>
-      <artifactId>ninjadoc</artifactId>
+      <groupId>com.devappliance.ninjadoc</groupId>
+      <artifactId>ninjadoc-openapi</artifactId>
       <version>last-release-version</version>
    </dependency>
 ```
