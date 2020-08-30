@@ -1,0 +1,39 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "OpenAPI definition",
+    "description": "",
+    "version": "v0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:1000",
+      "description": "Generated server url"
+    }
+  ],
+  "paths": {
+    "/api/v1/schools": {
+      "post": {
+        "tags": [
+          "test-controller"
+        ],
+        "summary": "createSchool",
+        "operationId": "createSchool",
+        "responses": {
+          "200": {
+            "description": "default response",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": true
+      }
+    }
+  },
+  "components": {}
+}

@@ -1,0 +1,65 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "OpenAPI definition",
+    "description": "",
+    "version": "v0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:1000",
+      "description": "Generated server url"
+    }
+  ],
+  "paths": {
+    "/api/v1/schools": {
+      "post": {
+        "tags": [
+          "test-controller"
+        ],
+        "summary": "createSchool",
+        "operationId": "createSchool",
+        "parameters": [
+          {
+            "name": "valueName",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "default response",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NewSchoolDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "NewSchoolDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "age": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
