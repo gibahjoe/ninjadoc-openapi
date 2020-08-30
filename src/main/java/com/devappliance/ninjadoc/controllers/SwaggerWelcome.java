@@ -9,6 +9,7 @@ import com.google.common.io.ByteStreams;
 import com.google.inject.Inject;
 import io.swagger.v3.oas.annotations.Operation;
 import ninja.*;
+import ninja.params.PathParam;
 import ninja.utils.HttpCacheToolkit;
 import ninja.utils.MimeTypes;
 import ninja.utils.ResponseStreams;
@@ -94,6 +95,21 @@ public class SwaggerWelcome extends AbstractSwaggerWelcome {
     public Result swaggerUi() {
         Object renderable = (Renderable) (context1, result) -> {
             String fileName = Constants.SWAGGER_UI_URL;
+            URL url = getStaticFileFromMetaInfResourcesDir(fileName);
+            streamOutUrlEntity(url, context1, result);
+        };
+        return Results.ok().render(renderable);
+    }
+
+    /**
+     * Service the swagger UI from the webjar
+     *
+     * @return
+     */
+    @Operation(hidden = true)
+    public Result swaggerResources(@PathParam("fileName") String file) {
+        Object renderable = (Renderable) (context1, result) -> {
+            String fileName = Constants.SWAGGER_RES_BASE + file;
             URL url = getStaticFileFromMetaInfResourcesDir(fileName);
             streamOutUrlEntity(url, context1, result);
         };

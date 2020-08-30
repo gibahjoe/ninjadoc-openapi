@@ -10,12 +10,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  *
  * @author bnasslahsen
  */
-
+//@JsonNaming(PropertyNamingStrategy.KebabCaseStrategy.class)
 public class SwaggerUiConfigProperties extends AbstractSwaggerUiConfigProperties {
 
     /**
      * The Disable swagger default url.
      */
+    @JsonProperty("disable-swagger-default-url")
     private boolean disableSwaggerDefaultUrl;
 
     /**

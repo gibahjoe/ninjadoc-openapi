@@ -1,3 +1,6 @@
+[![](https://jitpack.io/v/gibahjoe/ninjadoc-openapi.svg)](https://jitpack.io/#gibahjoe/ninjadoc-openapi)
+
+
 # **Introduction**
 
 The ninjadoc-openapi Java library helps automating the generation of API documentation using Ninja projects.

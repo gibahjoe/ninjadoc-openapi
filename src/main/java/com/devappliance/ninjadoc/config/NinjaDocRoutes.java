@@ -33,6 +33,7 @@ public class NinjaDocRoutes {
         if (swaggerUiConfigProperties.isEnabled()) {
             router.GET().route(swaggerUiConfigProperties.getPath()).with(SwaggerWelcome::regirectUi);
             router.GET().route("/swagger-ui/index.html").with(SwaggerWelcome::swaggerUi);
+            router.GET().route("/swagger-ui/{fileName: .*}").with(SwaggerWelcome::swaggerResources);
         }
         if (ninjaDocConfigProperties.getApiDocs().getGroups().isEnabled()) {
             router.GET().route(ninjaDocConfigProperties.getApiDocs().getPath() + "/{group}").with(MultipleOpenApiResource::openapiJson);

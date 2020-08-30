@@ -75,7 +75,11 @@ public final class Constants {
     /**
      * The constant SWAGGER_UI_URL.
      */
-    public static final String SWAGGER_UI_URL = "/swagger-ui/3.32.5/index.html";
+    public static final String SWAGGER_RES_BASE = "/swagger-ui/3.32.5/";
+    /**
+     * The constant SWAGGER_UI_URL.
+     */
+    public static final String SWAGGER_UI_URL = SWAGGER_RES_BASE + "index.html";
 
     /**
      * The constant SWAGGER_UI_OAUTH_REDIRECT_URL.
