@@ -1,4 +1,4 @@
-[![](https://jitpack.io/v/gibahjoe/ninjadoc-openapi.svg)](https://jitpack.io/#gibahjoe/ninjadoc-openapi)
+[![](https://jitpack.io/v/gibahjoe/ninjadoc-openapi.svg)](https://jitpack.io/#gibahjoe/ninjadoc-openapi) ![Maven Central](https://img.shields.io/maven-central/v/com.devappliance.ninjadoc/ninjadoc-openapi)
 
 
 # **Introduction**
@@ -28,6 +28,10 @@ This is a community-based project, not maintained by the Ninja Framework Contrib
     * `context-path`: The context path of the application
 *   Documentation can be available in yaml format as well, on the following path: /v3/api-docs.yaml
 
+## Installation
+NinjaDoc can be installed in as few as the simple steps outlined below.
+
+Add the dependency to your pom.xml
 ```xml
    <dependency>
       <groupId>com.devappliance.ninjadoc</groupId>
@@ -35,9 +39,83 @@ This is a community-based project, not maintained by the Ninja Framework Contrib
       <version>last-release-version</version>
    </dependency>
 ```
-*   This step is optional: For custom path of the swagger documentation in HTML format, add a custom ninjadoc property, in your spring-boot configuration file:
+Register the routes exposed by NinjaDoc in your Routes.java
+```java
+public class Routes implements ApplicationRoutes {
+
+    @Inject
+    private NinjaDocRoutes ninjaDocRoutes;
+
+    @Override
+    public void init(Router router) {  
+        ninjaDocRoutes.register(router);
+        // Other application routes
+    }
+
+}
+```
+
+Install Ninjadoc module in your Module.java
+
+```java
+@Singleton
+public class Module extends AbstractModule {
+    private final NinjaProperties ninjaProperties;
+
+    @Inject
+    public Module(NinjaProperties ninjaProperties) {
+        this.ninjaProperties = ninjaProperties;
+    }
+
+    protected void configure() {
+        install(new NinjaDocModule(ninjaProperties));
+        // Other application modules
+    }
+
+}
+```
+
+In order to correctly document return objects in your controllers, instead of the default _Result.java_, NinjaDoc provides a custom annotation to do this for you.
+Annotate controller methods with this annotation so that correct return types are generated. This is optional but recommended.
+```java
+ @Singleton
+ public class ApplicationController {
+ 
+     public Result index() {
+ 
+         return Results.html();
+ 
+     }
+//    Add this annotation to generate correct return types
+     @DocumentReturnType(type = SimplePojo.class)
+     public Result helloWorldJson() {
+         
+         SimplePojo simplePojo = new SimplePojo();
+         simplePojo.content = "Hello World! Hello Json!";
+ 
+         return Results.json().render(simplePojo);
+ 
+     }
+     
+     public static class SimplePojo {
+ 
+         public String content;
+         
+     }
+ }
+```
+
+This step is optional: For custom path of the swagger documentation in HTML format, add a custom ninjadoc property, in your application.conf file:
 
 ```properties
 # swagger-ui custom path
 ninjadoc.swagger-ui.path=/swagger-ui.html
 ```
+Enjoy.
+
+## Disclaimer
+NinjaDoc was inspired by SpringDoc. In fact, it is a clone of SpringDoc but heavily modified to suit ninja.
+This means that all features and configuration supported by SpringDoc, as at the releases between March 2020 and August 2020 (I honestly cannot remember when), are also supported by NinjaDoc.
+**If there are any features that were missed or not fully implemented, please raise an issue.**
+
+Checkout the example project for implementation details.

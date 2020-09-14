@@ -44,8 +44,6 @@ import io.swagger.v3.core.converter.ModelConverter;
 import io.swagger.v3.oas.models.OpenAPI;
 import ninja.AssetsController;
 import ninja.utils.NinjaProperties;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.*;
@@ -58,7 +56,6 @@ public class NinjaDocModule extends AbstractModule {
         getConfig().addHiddenRestControllers(AssetsController.class);
     }
 
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private NinjaProperties ninjaProperties;
 
     @Inject
@@ -153,16 +150,6 @@ public class NinjaDocModule extends AbstractModule {
         return new OperationBuilder(parameterBuilder, requestBodyBuilder,
                 securityParser, propertyResolverUtils);
     }
-//    @Provides
-//   public MultipleOpenApiResource multipleOpenApiResource(Set<GroupedOpenApi> groupedOpenApis,
-//                                                    Provider<OpenAPIBuilder> defaultOpenAPIBuilder, AbstractRequestBuilder requestBuilder,
-//                                                    GenericResponseBuilder responseBuilder, OperationBuilder operationParser,
-//                                                    NinjaDocConfigProperties springDocConfigProperties,Injector injector) {
-//        return new MultipleOpenApiResource(groupedOpenApis,
-//                defaultOpenAPIBuilder, requestBuilder,
-//                responseBuilder, operationParser,
-//                springDocConfigProperties,injector);
-//    }
 
     private <T> T getPropertiesAsType(String propertyPrefix, Class<T> tClass) throws IOException {
         Properties builtProps = new Properties();

@@ -57,11 +57,6 @@ public class HandlerMethod {
         this.description = initDescription(this.beanType, this.method);
     }
 
-    /**
-     * Create an instance from a bean instance, method name, and parameter types.
-     *
-     * @throws NoSuchMethodException when the method cannot be found
-     */
     public HandlerMethod(Object bean, String methodName, Class<?>... parameterTypes) throws NoSuchMethodException {
         Assert.notNull(bean, "Bean is required");
         Assert.notNull(methodName, "Method name is required");
@@ -121,6 +116,7 @@ public class HandlerMethod {
      * overrides as of Spring Framework 4.2.2.
      *
      * @param annotationType the type of annotation to introspect the method for
+     * @param <A>            Generic type
      * @return the annotation, or {@code null} if none found
      * @see AnnotatedElementUtils#findMergedAnnotation
      */
@@ -133,6 +129,7 @@ public class HandlerMethod {
      * Return whether the parameter is declared with the given annotation type.
      *
      * @param annotationType the annotation type to look for
+     * @param <A> Generic type
      * @see AnnotatedElementUtils#hasAnnotation
      * @since 4.3
      */

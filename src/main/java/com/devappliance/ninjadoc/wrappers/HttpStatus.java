@@ -511,9 +511,6 @@ public enum HttpStatus {
         return null;
     }
 
-    /**
-     * Return the integer value of this status code.
-     */
     public int value() {
         return this.value;
     }

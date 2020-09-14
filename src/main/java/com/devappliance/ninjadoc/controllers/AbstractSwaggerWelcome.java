@@ -65,11 +65,6 @@ public abstract class AbstractSwaggerWelcome {
         return contextPath + docsUrl;
     }
 
-    /**
-     * Build config url.
-     *
-     * @param contextPath the context path
-     */
     protected void buildConfigUrl(String contextPath, URIBuilder uriBuilder) throws URISyntaxException {
         String apiDocsUrl = ninjaDocConfigProperties.getApiDocs().getPath();
         if (StringUtils.isEmpty(swaggerUiConfig.getConfigUrl())) {
@@ -93,6 +88,7 @@ public abstract class AbstractSwaggerWelcome {
      *
      * @param sbUrl the sb url
      * @return the uri components builder
+     * @throws URISyntaxException
      */
     protected URIBuilder getUriComponentsBuilder(String sbUrl) throws URISyntaxException {
         URIBuilder uriBuilder = new URIBuilder(sbUrl);
